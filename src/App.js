@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import backendAPI from "./api/backendapi";
+import SearchBar from "./components/SearchBar";
 import './App.css';
 
 function App() {
   const [ menus, setMenus ] = useState([]);
-  const [ query, setQuery ] = useState("");
-
+  
   useEffect(() => {
     backendAPI.get('/menus')
     .then((response) => {
@@ -17,9 +17,8 @@ function App() {
     });
   }, []);
 
-  const handleChange = (event) => {
-    setQuery(event.target.value)
-    backendAPI.get(`/menus?q=${event.target.value}`)
+  const handleChange = (query) => {
+    backendAPI.get(`/menus?q=${query}`)
     .then((response) => {
       console.log('GET status', response.status);
       console.log('GET status', response.data);
@@ -81,11 +80,7 @@ function App() {
   return (
     <div className="App">
       <h1>Menu</h1>
-      <input
-        type="text"
-        placeholder="Search here"
-        onChange={handleChange}
-        value={query} />
+      <SearchBar onChange={handleChange}/>
       <table>
         <thead>
           <tr>

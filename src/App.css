@@ -2,23 +2,6 @@
   text-align: center;
 }
 
-input {
-  width: 50%;
-  height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
-  text-align: center;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-
-::placeholder { /* Most modern browsers support this now. */
-  color:  #fff;
-}
-
 table{
   margin: 0 auto;
   width: 50%;
