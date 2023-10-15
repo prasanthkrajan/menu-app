@@ -1,12 +1,8 @@
-// Counter.js
-import { useState } from 'react';
+// SearchBar.js
 import './SearchBar.css';
 
-function SearchBar({onChange}) {
-	const [ query, setQuery ] = useState("");
-
+function SearchBar({value, onChange}) {
 	const changeHandler = (event) => {
-    setQuery(event.target.value)
     onChange(event.target.value)
   }
 
@@ -15,7 +11,7 @@ function SearchBar({onChange}) {
 			type="text"
 			placeholder="Search here"
 			onChange={changeHandler}
-			value={query} />
+			value={value} />
 	);
 }
 export default SearchBar;
