@@ -12,6 +12,8 @@ function SearchBar({value, onChange}) {
 			placeholder="Search here"
 			onChange={changeHandler}
 			value={value}
+			onFocus={ (e) => e.target.placeholder = '' }
+			onBlur={ (e) => e.target.placeholder = 'Search Here' }
 		/>
 	);
 }
