@@ -9,70 +9,61 @@ function Table({ query, onErrorPresent }) {
 	useEffect(() => {
     backendAPI.get(`/menus?q=${query}`)
     .then((response) => {
-      console.log('GET status', response.status);
-			console.log('GET data', response.data);
-      setData(response.data)
-      onErrorPresent(false)
+      handleApiCallSuccess(response)
     })
     .catch((error) => {
-      console.log(error.message);
-      onErrorPresent(true)
+      handleApiCallFailure(error)
     });
-  }, [query, onErrorPresent]);
+  }, [query]);
+
+  const handleApiCallSuccess = (response) => {
+    console.log('GET status', response.status);
+    setData(response.data)
+    onErrorPresent(false)
+  }
+
+  const handleApiCallFailure = (error) => {
+    console.log(error.message);
+    onErrorPresent(true)
+  }
 
   const handlePriceSortDesc = () => {
     backendAPI.get(`/menus?q=${query}&sort_by=price&order_by=desc`)
     .then((response) => {
-      console.log('GET status', response.status);
-      console.log('GET status', response.data);
-      setData(response.data)
-      onErrorPresent(false)
+      handleApiCallSuccess(response)
     })
     .catch((error) => {
-      console.log(error.message);
-      onErrorPresent(true)
+      handleApiCallFailure(error)
     });
   }
 
   const handlePriceSortAsc = () => {
     backendAPI.get(`/menus?q=${query}&sort_by=price&order_by=asc`)
     .then((response) => {
-      console.log('GET status', response.status);
-      console.log('GET status', response.data);
-      setData(response.data)
-      onErrorPresent(false)
+      handleApiCallSuccess(response)
     })
     .catch((error) => {
-      console.log(error.message);
-      onErrorPresent(true)
+      handleApiCallFailure(error)
     });
   }
 
   const handleNameSortDesc = () => {
     backendAPI.get(`/menus?q=${query}&sort_by=name&order_by=desc`)
     .then((response) => {
-      console.log('GET status', response.status);
-      console.log('GET status', response.data);
-      setData(response.data)
-      onErrorPresent(false)
+      handleApiCallSuccess(response)
     })
     .catch((error) => {
-      console.log(error.message);
-      onErrorPresent(true)
+      handleApiCallFailure(error)
     });
   }
 
   const handleNameSortAsc = () => {
     backendAPI.get(`/menus?q=${query}&sort_by=name&order_by=asc`)
     .then((response) => {
-      console.log('GET status', response.status);
-      console.log('GET status', response.data);
-      setData(response.data)
-      onErrorPresent(false)
+      handleApiCallSuccess(response)
     })
     .catch((error) => {
-      console.log(error.message);
-      onErrorPresent(true)
+      handleApiCallFailure(error)
     });
   }
 
