@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
-import backendAPI from "./api/backendapi";
-import SearchBar from "./components/SearchBar";
-import Table from "./components/Table";
+import { useState } from "react";
+import SearchBar from "./components/SearchBar/SearchBar";
+import Table from "./components/Table/Table";
 import './App.css';
 
 function App() {
   const [ query, setQuery ] = useState("");
-  
+
   return (
     <div className="App">
-      <h1>Menu</h1>
+      <h1>Costa Rica Pizza Menu</h1>
       <SearchBar onChange={setQuery} value={query} />
       <Table query={query} />
     </div>

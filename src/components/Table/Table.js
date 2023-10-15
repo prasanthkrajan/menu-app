@@ -1,6 +1,6 @@
 // Table.js
 import { useEffect, useState } from "react";
-import backendAPI from "../api/backendapi";
+import backendAPI from "../../api/backendapi";
 import './Table.css';
 
 function Table({query}) {
