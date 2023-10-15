@@ -27,8 +27,8 @@ function Table({ query, onErrorPresent }) {
     onErrorPresent(true)
   }
 
-  const handlePriceSortDesc = () => {
-    backendAPI.get(`/menus?q=${query}&sort_by=price&order_by=desc`)
+  const handlePriceSort = (order) => {
+    backendAPI.get(`/menus?q=${query}&sort_by=price&order_by=${order}`)
     .then((response) => {
       handleApiCallSuccess(response)
     })
@@ -37,28 +37,8 @@ function Table({ query, onErrorPresent }) {
     });
   }
 
-  const handlePriceSortAsc = () => {
-    backendAPI.get(`/menus?q=${query}&sort_by=price&order_by=asc`)
-    .then((response) => {
-      handleApiCallSuccess(response)
-    })
-    .catch((error) => {
-      handleApiCallFailure(error)
-    });
-  }
-
-  const handleNameSortDesc = () => {
-    backendAPI.get(`/menus?q=${query}&sort_by=name&order_by=desc`)
-    .then((response) => {
-      handleApiCallSuccess(response)
-    })
-    .catch((error) => {
-      handleApiCallFailure(error)
-    });
-  }
-
-  const handleNameSortAsc = () => {
-    backendAPI.get(`/menus?q=${query}&sort_by=name&order_by=asc`)
+  const handleNameSort = (order) => {
+    backendAPI.get(`/menus?q=${query}&sort_by=name&order_by=${order}`)
     .then((response) => {
       handleApiCallSuccess(response)
     })
@@ -74,15 +54,15 @@ function Table({ query, onErrorPresent }) {
 					<th>
 						Name
 						<div className='table-header-icons'>
-							<button onClick={handleNameSortAsc}>▲</button>
-							<button onClick={handleNameSortDesc}>▼</button>
+							<button onClick={() => handleNameSort('asc')}>▲</button>
+							<button onClick={() => handleNameSort('desc')}>▼</button>
 						</div>
 					</th>
 					<th>
 						Price
 						<div className='table-header-icons'>
-							<button onClick={handlePriceSortAsc}>▲</button>
-							<button onClick={handlePriceSortDesc}>▼</button>
+							<button onClick={() => handlePriceSort('asc')}>▲</button>
+							<button onClick={() => handlePriceSort('desc')}>▼</button>
 						</div>
 					</th>
 				</tr>   
