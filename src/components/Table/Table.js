@@ -3,30 +3,34 @@ import { useEffect, useState } from "react";
 import backendAPI from "../../api/backendapi";
 import './Table.css';
 
-function Table({query}) {
-	const [ menus, setMenus ] = useState([]);
+function Table({ query, onErrorPresent }) {
+	const [ data, setData ] = useState([]);
 
 	useEffect(() => {
     backendAPI.get(`/menus?q=${query}`)
     .then((response) => {
       console.log('GET status', response.status);
 			console.log('GET data', response.data);
-      setMenus(response.data)
+      setData(response.data)
+      onErrorPresent(false)
     })
     .catch((error) => {
       console.log(error.message);
+      onErrorPresent(true)
     });
-  }, [query]);
+  }, [query, onErrorPresent]);
 
   const handlePriceSortDesc = () => {
     backendAPI.get(`/menus?q=${query}&sort_by=price&order_by=desc`)
     .then((response) => {
       console.log('GET status', response.status);
       console.log('GET status', response.data);
-      setMenus(response.data)
+      setData(response.data)
+      onErrorPresent(false)
     })
     .catch((error) => {
       console.log(error.message);
+      onErrorPresent(true)
     });
   }
 
@@ -35,10 +39,12 @@ function Table({query}) {
     .then((response) => {
       console.log('GET status', response.status);
       console.log('GET status', response.data);
-      setMenus(response.data)
+      setData(response.data)
+      onErrorPresent(false)
     })
     .catch((error) => {
       console.log(error.message);
+      onErrorPresent(true)
     });
   }
 
@@ -47,10 +53,12 @@ function Table({query}) {
     .then((response) => {
       console.log('GET status', response.status);
       console.log('GET status', response.data);
-      setMenus(response.data)
+      setData(response.data)
+      onErrorPresent(false)
     })
     .catch((error) => {
       console.log(error.message);
+      onErrorPresent(true)
     });
   }
 
@@ -59,10 +67,12 @@ function Table({query}) {
     .then((response) => {
       console.log('GET status', response.status);
       console.log('GET status', response.data);
-      setMenus(response.data)
+      setData(response.data)
+      onErrorPresent(false)
     })
     .catch((error) => {
       console.log(error.message);
+      onErrorPresent(true)
     });
   }
 
@@ -88,10 +98,10 @@ function Table({query}) {
 			</thead>   
 			<tbody>
 				{
-					menus.map((menu,key) =>
+					data.map((item,key) =>
 					<tr key={key}>
-							<td className='table-data'>{menu.name }</td>
-							<td className='table-data'>{menu.price }</td>
+							<td className='table-data'>{item.name }</td>
+							<td className='table-data'>{item.price }</td>
 					</tr>)
 				}
 			</tbody>

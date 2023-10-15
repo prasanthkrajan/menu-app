@@ -11,7 +11,8 @@ function SearchBar({value, onChange}) {
 			type="text"
 			placeholder="Search here"
 			onChange={changeHandler}
-			value={value} />
+			value={value}
+		/>
 	);
 }
 export default SearchBar;
